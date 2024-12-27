@@ -56,37 +56,12 @@ pipeline{
             agent {
         label 'AGENT-1'
         }
-    i
             steps{
                 script{
                     docker.build("${IMAGE_NAME}:latest")
                 }
             }
         }
-        // stage('Static code analysis'){
-            
-        //     steps{
-                
-        //         script{
-                    
-        //             withSonarQubeEnv(credentialsId: 'sonar-api') {
-                        
-        //                 sh 'mvn clean package sonar:sonar'
-        //             }
-        //            }
-                    
-        //         }
-        //     }
-        //     stage('Quality Gate Status'){
-                
-        //         steps{
-                    
-        //             script{
-                        
-        //                 waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
-        //             }
-        //         }
-        //     }
              }
 }
 
