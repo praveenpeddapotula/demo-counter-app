@@ -7,7 +7,9 @@ pipeline{
     tools {
         maven 'maven3'
         jdk 'JDK17'
-        docker 'Docker'
+    }
+    environment {
+        IMAGE_NAME = 'docker-image'
     }
     
     stages {
@@ -52,6 +54,13 @@ pipeline{
                 }
             }
         }
+        stage('Docker build'){
+            steps{
+                script{
+                    docker.build("${IMAGE_NAME}:latest")
+                }
+            }
+        }
         // stage('Static code analysis'){
             
         //     steps{
@@ -76,15 +85,7 @@ pipeline{
         //             }
         //         }
         //     }
-        stage('Docker Image Build'){
-            steps{
-                script{
-                    sh 'docker image build -t demo-app .'
-                }
-            }
-        }
-        }
-        
+             }
 }
 
 
