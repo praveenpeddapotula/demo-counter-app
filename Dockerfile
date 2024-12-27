@@ -1,8 +1,8 @@
 FROM maven as build
 WORKDIR /app 
 RUN useradd praveen
-USER praveen
 RUN mkdir -p /home/praveen/.m2/repository && chown -R praveen:praveen /home/praveen/.m2
+USER praveen
 COPY pom.xml .
 RUN mvn dependency:go-offline
 COPY . .
