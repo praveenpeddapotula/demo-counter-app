@@ -1,10 +1,13 @@
 pipeline{
     
-    agent any 
+    agent {
+        label 'AGENT-1'
+    }
     
     tools {
         maven 'maven3'
         jdk 'JDK17'
+        docker 'Docker'
     }
     
     stages {
@@ -73,6 +76,13 @@ pipeline{
         //             }
         //         }
         //     }
+        stage('Docker Image Build'){
+            steps{
+                script{
+                    sh 'docker image build -t demo-app .'
+                }
+            }
+        }
         }
         
 }
