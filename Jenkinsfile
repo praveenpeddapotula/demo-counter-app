@@ -1,8 +1,6 @@
 pipeline{
     
-    agent {
-        label 'AGENT-1'
-    }
+    agent any
     
     tools {
         maven 'maven3'
@@ -55,6 +53,10 @@ pipeline{
             }
         }
         stage('Docker build'){
+            agent {
+        label 'AGENT-1'
+        }
+    i
             steps{
                 script{
                     docker.build("${IMAGE_NAME}:latest")
