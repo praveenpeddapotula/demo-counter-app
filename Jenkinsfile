@@ -67,6 +67,9 @@ pipeline{
             }
         }
         stage('Docker push image'){
+                 agent {
+        label 'AGENT-1'
+        }
             steps{
                 script{
                     docker.withRegistry('https://index.docker.io/v1/', 'Docker-token'){
