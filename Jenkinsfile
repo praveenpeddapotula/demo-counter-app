@@ -77,6 +77,17 @@ pipeline{
                 }
             }
         }
+        stage('Docker run container'){
+            agent {
+                label 'AGENT-1'
+            }
+            steps{
+                script{
+                    sh "docker run -d --name demo-container-app -p 8080:8080 ${IMAGE_NAME}:${env.BUILD_NUMBER}"
+                }
+            }
+            
+        }
              }
 }
 
