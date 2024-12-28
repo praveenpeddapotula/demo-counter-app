@@ -7,7 +7,7 @@ pipeline{
         jdk 'JDK17'
     }
     environment {
-        IMAGE_NAME = 'docker-image'
+        IMAGE_NAME = 'praveenpeddapotula/demo-counter-app'
     }
     
     stages {
