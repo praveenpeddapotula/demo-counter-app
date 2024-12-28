@@ -6,7 +6,7 @@ USER praveen
 COPY pom.xml .
 RUN mvn dependency:go-offline
 COPY . .
-RUN mvn package -DskipTests
+RUN mvn package
 
 
 FROM openjdk:17-jdk
