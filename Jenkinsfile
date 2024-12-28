@@ -8,7 +8,6 @@ pipeline{
     }
     environment {
         IMAGE_NAME = 'praveenpeddapotula/demo-counter-app'
-         IMAGE_TAG = "${env.BRANCH_NAME}-${env.BUILD_NUMBER}" 
     }
     
     stages {
@@ -61,7 +60,7 @@ pipeline{
                 script{
                     sh 'docker --version'
                     docker.withRegistry('https://index.docker.io/v1/', 'Docker-token'){
-                    docker.build("${IMAGE_NAME}:latest")
+                    docker.build("${IMAGE_NAME}:${env.BUILD_NUMBER}")
                     }
                 }
             }
@@ -73,7 +72,7 @@ pipeline{
             steps{
                 script{
                     docker.withRegistry('https://index.docker.io/v1/', 'Docker-token'){
-                        sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
+                        sh "docker push ${IMAGE_NAME}:${env.BUILD_NUMBER}"
                     }
                 }
             }
