@@ -1,6 +1,8 @@
 pipeline{
     
-    agent any
+    agent {
+        label 'AGENT-1'
+    }
     
     tools {
         maven 'maven3'
@@ -53,9 +55,7 @@ pipeline{
             }
         }
         stage('Docker build'){
-            agent {
-        label 'AGENT-1'
-        }
+       
             steps{
                 script{
                     sh 'docker --version'
@@ -66,9 +66,7 @@ pipeline{
             }
         }
         stage('Docker push image'){
-                 agent {
-        label 'AGENT-1'
-        }
+        
             steps{
                 script{
                     docker.withRegistry('https://index.docker.io/v1/', 'Docker-jenkins-token'){
@@ -78,9 +76,7 @@ pipeline{
             }
         }
         stage('Docker run container'){
-            agent {
-                label 'AGENT-1'
-            }
+            
             steps{
                 script{
                     sh "docker run -d --name demo-container-app -p 8080:8080 ${IMAGE_NAME}:${env.BUILD_NUMBER}"
