@@ -31,7 +31,7 @@ pipeline{
             steps{
                 
                 script{
-                    
+                    sh 'echo $JAVA_HOME'
                     sh 'mvn test'
                 }
             }
